@@ -47,6 +47,7 @@ namespace Stock.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(string))]
         public async Task<IActionResult> GetAllProduct()
         {
+            // COmplete the code here and in IProductService to get all stock entries in database
             throw new NotImplementedException();
         }
 

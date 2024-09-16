@@ -11,5 +11,8 @@ namespace Catalog.Models.Entities
 
         [Column("description")]
         public string Description { get; set; }
+
+        [Column("rating")]
+        public int Rating { get; set; }
     }
 }

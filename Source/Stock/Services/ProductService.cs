@@ -23,6 +23,8 @@ namespace Stock.Services
 
         public Task<IEnumerable<ProductRessource>> GetAll()
         {
+            // Should get all stock entries in database
+            // Spoiler : in ProductRepository the .FindAsync() method allow you to return filtered results, but the filter can be null...
             throw new NotImplementedException();
         }
 
@@ -54,6 +56,7 @@ namespace Stock.Services
 
         public Task<int> ImportButFaster(IEnumerable<ImportProductRessource> productsToImport)
         {
+            // Do not bother with batched operation, the goal of this is to atomise the logique inside Import main loop using more asynchronous operations
             throw new NotImplementedException();
         }
     }

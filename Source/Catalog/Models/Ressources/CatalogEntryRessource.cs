@@ -9,6 +9,7 @@ namespace Catalog.Models.Ressources
         {
             this.Name = fromEntity.Name;
             this.Description = fromEntity.Description;
+            this.Rating = fromEntity.Rating;
         }
 
         [Required]
@@ -16,5 +17,7 @@ namespace Catalog.Models.Ressources
 
         [Required]
         public string Description { get; set; }
+
+        public int Rating { get; set; }
     }
 }
