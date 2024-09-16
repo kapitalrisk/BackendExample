@@ -56,7 +56,7 @@ namespace Stock.Services
 
         public Task<int> ImportButFaster(IEnumerable<ImportProductRessource> productsToImport)
         {
-            // Do not bother with batched operation, the goal of this is to atomise the logique inside Import main loop using more asynchronous operations
+            // Do not bother with batched operation, the goal of this is to atomise the logic inside Import main loop using more asynchronous operations
             throw new NotImplementedException();
         }
     }
