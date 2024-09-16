@@ -19,13 +19,16 @@ namespace Stock.Services.HostedServices
             _productRepository = serviceProvider.CreateScope().ServiceProvider.GetRequiredService<IProductRepository>();
         }
 
-        public async Task StartAsync(CancellationToken cancellationToken)
+        public Task StartAsync(CancellationToken cancellationToken)
         {
             _logger.LogDebug($"{nameof(LowStockAlertingHostedService)} starting");
 
             _timer = new Timer(DoWork, null, TimeSpan.Zero, TimeSpan.FromMinutes(10)); // value to put in config obviously
+
+            return Task.CompletedTask;
         }
 
+        // Does the logic of this method will make issues appears if we run multiples instances of the "Stock" microservice on the same kube cluster?
         private async void DoWork(object? state)
         {
             try
@@ -52,7 +55,11 @@ namespace Stock.Services.HostedServices
 
         public Task StopAsync(CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            _logger.LogDebug($"{nameof(LowStockAlertingHostedService)} stopping");
+
+            _timer?.Change(Timeout.Infinite, 0);
+
+            return Task.CompletedTask;
         }
 
         protected virtual void Dispose(bool disposing)
