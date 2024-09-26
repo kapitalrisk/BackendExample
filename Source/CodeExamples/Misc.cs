@@ -8,12 +8,25 @@ namespace CodeExamples
 {
     public class Misc
     {
+        private class ExampleClass
+        {
+            private readonly int _value = 0; // default value if not set by a ctor
+            public int Value { get => _value; }
+
+            public ExampleClass(int value)
+            {
+                _value = value;
+            }
+        }
+
         public void Variables()
         {
-            // Everything in C# is a class (or a struct)
+            // Everything in C# is an object (or a struct)
             int a = 1;
             object b = a; // boxing
             int c = (int)b; // unboxing
+            var explCls = new ExampleClass(45);
+            var explClsAsObj = explCls as object; // explClsAsObj is an object but can be cast back to ExampleClass to find back the value of explCls.Value
 
             // There is only one compiler in C# and it ensure type safety EVERYWHERE, so "var" is evaluated and check at compilation time
             var d = 10; // d will be an int by default
@@ -34,11 +47,14 @@ namespace CodeExamples
             // This following line does exactly the same
             substr = test?.Substring(0, test.Length - 1);
 
+            // Naturally since everything is an object you can still have a variable not declared as "potentially nullable" that contain null
+            string nullStr = null; // But compiler will throw warnings especially if you try to use it after declaration
+
             // There is also "coallescing" just like in sql on nullable variables
             substr = test ?? b?.ToString() ?? "defaultStr";
 
-            // default key word can be used on any type
-            var toast = default(int);
+            // default keyword can be used on any type
+            var toast = default(int); // toast will be "0"
         }
 
         public void Loops()
