@@ -11,7 +11,7 @@
             var coldTask = new Task(() => Console.WriteLine("baz"));
             coldTask.Start();
 
-            // All those examples are similar to starting a thread like so
+            // All those examples are similar to starting a thread like so but NOT NECESSARLY
             new Thread(() => Console.WriteLine("sim")).Start();
 
             // However Tasks include more logic than straigh up starting threads...
@@ -25,7 +25,7 @@
                 Console.WriteLine("foo");
             });
             Console.WriteLine(task.IsCompleted); // false
-            task.Wait(); // block until task is completed, can passa a timeout parameter like task.Wait(1000);
+            task.Wait(); // block until task is completed, can pass a a timeout parameter like task.Wait(1000);
             Console.WriteLine(task.IsCompleted); // true
         }
 

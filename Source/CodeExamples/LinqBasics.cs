@@ -24,7 +24,7 @@ namespace CodeExamples
 
             // All Linq queries take advantage of the "yield" keyword where a result is returned only if the expression is evaluated
 
-            // However beware that since non evaluated Linq pipelines (so no "ToList" called on them) are just that, pipelines, if the base collection evolves
+            // However beware that since non evaluated Linq pipelines (so no "ToList" called on them) are just that, pipelines, if the base collection evolves it will also reflect that change and may lead to unexpected behavior
             var longWordQuery = _strings.Where(x => x.Length > 4); // create the linq query, its just a filtering pipeline
             _strings.Add("baboushka"); // sneak a new element in the _strings list
 
@@ -35,6 +35,9 @@ namespace CodeExamples
 
             // You can also perform subqueries
             var subQueryExample = _strings.Where(x => x.Where(y => y == 'o').Count() > 0); // will return "hello, world, foo, baboushka", obviously there is more elegant ways to do it
+
+            // Can also be usefull to one-line some changes on a collection
+            var stringFirstLetters = _strings.Select(x => x[0]); // will return a char collection with [ 'h', 'w', 'f', 'b', 'b' ] in it
         }
     }
 }
